@@ -46,8 +46,8 @@ class Post(models.Model):
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
     # body = models.TextField()
-    body = UEditorField('内容', default='', width=950, height=280, imagePath='post/images/',
-                               filePath='post/files/')
+    body = UEditorField('内容', default='', width=950, height=280, imagePath='blog/post/images/',
+                               filePath='blog/post/files/')
 
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
