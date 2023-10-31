@@ -1,0 +1,19 @@
+{% load blog_tags %}
+{% load static  %}
+
+{#<link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">#}
+<link rel="stylesheet" type="text/css" href={% static "stylesheets\css\bootstrap_cc_for_tag.css" %}>
+
+
+<div class="row">
+    <div class="widget" >
+
+        {% get_tags_count as tag_list %}
+        {% for tag in tag_list %}
+            <a href="{% url 'blog:PostListView' %}tag/{{ tag.2 }}/" style="font-size: 20px;">
+                <span style="padding: 5px;" class="label {% cycle 'label-default' 'label-primary' 'label-success' 'label-info' 'label-warning' 'label-danger' %}">{{ tag.1 }}:{{ tag.3 }}</span>
+            </a>&nbsp;
+        {% endfor %}
+    </div>
+
+</div>

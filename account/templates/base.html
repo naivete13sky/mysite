@@ -1,0 +1,81 @@
+{#{% load staticfiles %}#}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+
+
+    <link rel="shortcut icon" href="img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link href={% static "index_base_20220818/css/bootstrap.min.css" %} rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href={% static "index_base_20220818/css/bootstrap-theme.css" %} rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href={% static "index_base_20220818/css/elegant-icons-style.css" %} rel="stylesheet">
+    <link href={% static "index_base_20220818/css/font-awesome.css" %} rel="stylesheet">
+    <!-- Custom styles -->
+    <link href={% static "index_base_20220818/css/style.css" %} rel="stylesheet">
+    <link href={% static "index_base_20220818/css/style-responsive.css" %} rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+    <!--[if lt IE 9]>
+    <script src={% static "index_base_20220818/js/html5shiv.js" %}></script>
+    <script src={% static "index_base_20220818/js/respond.min.js" %}></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- =======================================================
+    Theme Name: NiceAdmin
+    Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+    Author: BootstrapMade
+    Author URL: https://bootstrapmade.com
+    ======================================================= -->
+
+
+
+</head>
+<body>
+    <div id="header">
+        <span class="logo">书签</span>
+
+        {% if request.user.is_authenticated %}
+            <ul class="menu">
+                <li {% if section == 'dashboard' %}class="selected"{% endif %}><a href="{% url 'blog:PostListView' %}">博客</a></li>
+                <li {% if section == 'dashboard' %}class="selected"{% endif %}><a href="{% url 'dashboard' %}">我的看板</a></li>
+                <li {% if section == 'images' %}class="selected"{% endif %}><a href="#">头像</a></li>
+                <li {% if section == 'people' %}class="selected"{% endif %}><a href="#">People</a></li>
+            </ul>
+        {% endif %}
+
+        <span class="user">
+            {% if request.user.is_authenticated %}
+            你好 {{ request.user.first_name }}{{ request.user.last_name }}，<a href="{% url 'logout' %}">退出</a>
+                {% else %}
+                <a href="{% url 'login' %}">登录</a>
+            {% endif %}
+        </span>
+
+    </div>
+
+
+{#    在模板中使用了messages变量，在后文可以看到视图并未向模板传入该变量。#}
+{#    这是因为在settings.py中的TEMPLATES设置中，context_processors的设置中包含django.contrib.messages.context_processors.messages这个上下文管理器，从而为模板传入了messages变量，而无需经过视图。#}
+{#    默认情况下可以看到还有debug，request和auth三个上下文处理器。#}
+{#    其中后两个就是我们在模板中可以直接使用request.user而无需传入该变量，也无需为request对象添加user属性的原因。#}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message|safe }}<a href="#" class="close">X</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

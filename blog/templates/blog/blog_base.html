@@ -1,0 +1,48 @@
+{% extends 'index_base_20221117.html' %}
+{% load static  %}
+{% load blog_tags %}
+{% block title %}博客{% endblock %}
+{% block header_menu %}
+    <a href="{% url "back_stage:index" %}" class="logo"><span class="lite">打开主页</span></a>
+    <a class="logo"><span class="lite">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span></a>
+    <a href="{% url "blog:PostListView" %}" class="logo"><span class="lite">博客主页</span></a>
+{% endblock %}
+
+
+
+{% block content_header_child %}
+    <li><i class="fa fa-home"></i><a href={% url 'blog:PostListView' %}>博客主页</a></li>
+
+{% endblock %}
+
+{% block main_content %}
+    <script src={% static "javascripts/jquery.min.js" %}></script>
+
+    <div class="row animated fadeInUp">
+        <div class="col-sm-12">
+            <div class="panel">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {#--------------------------------------开始--表格--------------------------------------#}
+                            {#--------------------------------------结束--表格--------------------------------------#}
+
+                        </div>
+                    </div>
+                    <div class="page-body">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-8">
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

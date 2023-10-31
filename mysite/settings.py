@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'simpleui',
+    'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
     'DjangoUeditor',
+    'taggit',
+    'back_stage.apps.BackStageConfig',
+    'casbin_adapter.apps.CasbinAdapterConfig',
     
 ]
 
@@ -119,9 +123,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-Hans'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -167,4 +173,46 @@ STATICFILES_FINDERS = (
 # 由于我们要允许用户上传图片，必须配置Django让其提供媒体文件服务，在settings.py中加入下列内容：
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#模拟邮箱，没有配置好邮箱时用这个做实验，会在命令窗里显示发送的邮件内容
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#下面用的465端口，阿里云可以用的
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'chen320821@163.com' # 帐号
+# EMAIL_HOST_PASSWORD =  'angela123.163'  # 密码
+EMAIL_HOST_PASSWORD =  'CZZLYIRGEDHOTHWA'  # 密码
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+# 如果没有指定next参数，登录成功后重定向的URL
+LOGIN_REDIRECT_URL = 'dashboard'
+# 用户需要登录的情况下被重定向到的URL地址（例如@login_required重定向到的地址）
+LOGIN_URL = 'login'
+# 用户需要登出的时候被重定向到的URL地址
+LOGOUT_URL = 'logout'
+
+
+CASBIN_MODEL = os.path.join(BASE_DIR, 'casbin.conf')
+
+
+# <---------------------------------------------------simpleui--------------------------------------------------------->
+# 隐藏simpleui主页信息
+SIMPLEUI_HOME_INFO = False
+
+# 自定义SIMPLEUI的Logo
+# SIMPLEUI_LOGO = 'https://avatars2.githubusercontent.com/u/13655483?s=60&v=4'
+# simpleui修改logo
+# 如果需要使用本地图片，需要在Lib/site-packages/simpleui/static/admin/simpleui-x/img中把原来的logo.png替换掉（图片名称不要改变）。
+
+
+# 设置默认主题
+SIMPLEUI_DEFAULT_THEME = 'admin.lte.css'
+
 

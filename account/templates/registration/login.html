@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+    {% if form.errors %}
+        <p>
+        用户名与密码不匹配！
+        请重试！
+        </p>
+    {% else %}
+        <p>请登录：</p>
+    {% endif %}
+    <body class="login-img3-body">
+    <div class="container">
+        <form class="login-form" action="{% url 'login' %}" method="post">
+            {#            {{ form.as_p }}#}
+
+            <div class="login-wrap">
+                <p class="login-img"><i class="icon_lock_alt"></i></p>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_profile"></i></span>
+                    <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" class="form-control" placeholder="Username" autofocus required id="id_username">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                    <input type="password" class="form-control" placeholder="Password" name="password" autocomplete="current-password" required id="id_password">
+                </div>
+                <label class="checkbox">
+                    <input type="checkbox" value="remember-me"> 记住我的账户
+                    <span class="pull-right"> <a href="{% url 'password_reset' %}"> 忘记密码？</a></span>
+                </label>
+                <button class="btn btn-primary btn-lg btn-block" type="submit">登录</button>
+
+                <div>
+                    <a href={% url "register" %}><i class="icon_key_alt"></i> 新用户注册 </a>
+                </div>
+            </div>
+
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+
+
+        </form>
+        <div class="text-right">
+
+        </div>
+    </div>
+
+
+
+
+</body>
+
+{% endblock %}

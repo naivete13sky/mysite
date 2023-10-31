@@ -1,0 +1,418 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href={% static "index_base_20220818/img/favicon.png" %}>
+    <title>{% block title %}悦谱数据管理系统{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link href={% static "index_base_20220818/css/bootstrap.min.css" %} rel="stylesheet">
+
+    <!-- bootstrap theme -->
+    <link href={% static "index_base_20220818/css/bootstrap-theme.css" %} rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href={% static "index_base_20220818/css/elegant-icons-style.css" %} rel="stylesheet" />
+    <link href={% static "index_base_20220818/css/font-awesome.min.css" %} rel="stylesheet" />
+    <!-- full calendar css-->
+    <link href={% static "index_base_20220818/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" %} rel="stylesheet" />
+    <link href={% static "index_base_20220818/assets/fullcalendar/fullcalendar/fullcalendar.css" %} rel="stylesheet" />
+    <!-- easy pie chart-->
+    <link href={% static "index_base_20220818/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" %} rel="stylesheet" type="text/css" media="screen" />
+    <!-- owl carousel -->
+    <link rel="stylesheet" href={% static "index_base_20220818/css/owl.carousel.css" %} type="text/css">
+    <link href={% static "index_base_20220818/css/jquery-jvectormap-1.2.2.css" %} rel="stylesheet">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href={% static "index_base_20220818/css/fullcalendar.css" %}>
+    <link href={% static "index_base_20220818/css/widgets.css" %} rel="stylesheet">
+    <link href={% static "index_base_20220818/css/style.css" %} rel="stylesheet">
+    <link href={% static "index_base_20220818/css/style-responsive.css" %} rel="stylesheet" >
+    <link href={% static "index_base_20220818/css/xcharts.min.css" %} rel="stylesheet">
+    <link href={% static "index_base_20220818/css/jquery-ui-1.10.4.min.css" %} rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="120x120" href={% static "favicon/apple-icon-120x120.png" %}>
+    <link rel="icon" type="/static/image/png" sizes="192x192" href={% static "favicon/android-icon-192x192.png" %}>
+    <link rel="icon" type="/static/image/png" sizes="32x32" href={% static "favicon/favicon-32x32.png" %}>
+    <link rel="icon" type="/static/image/png" sizes="16x16" href={% static "favicon/favicon-16x16.png" %}>
+    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href={% static "vendor/animate.css/animate.css" %}>
+    <link rel="stylesheet" href={% static "vendor/data-table/media/css/dataTables.bootstrap.min.css" %}>
+    <link rel="stylesheet" href={% static "vendor/data-table/extensions/Responsive/css/responsive.bootstrap.min.css" %}>
+    <link rel="stylesheet" href={% static "stylesheets/css/style.css" %}>
+    <link rel="stylesheet" href={% static "vendor/select2/css/select2.min.css" %}>
+    <link rel="stylesheet" href={% static "vendor/select2/css/select2-bootstrap.min.css" %}>
+{#    <link rel="stylesheet" href={% static "vendor/bootstrap_date-picker/css/bootstrap-datepicker3.min.css" %}>#}
+    <link rel="stylesheet" href={% static "vendor/bootstrap_time-picker/css/timepicker.css" %}>
+{#    <link rel="stylesheet" href={% static "vendor/bootstrap_color-picker/css/bootstrap-colorpicker.min.css" %}>#}
+
+{#    <link href="{% static "admin/css/base.css" %}" rel="stylesheet">#}
+
+
+
+
+    {% block head_add %}
+
+    {% endblock %}
+</head>
+
+<body>
+
+
+    <!-- container section start -->
+    <section id="container" class="">
+
+        <header class="header dark-bg">
+            <div class="toggle-nav">
+                <div class="icon-reorder tooltips" data-original-title="折叠导航" data-placement="bottom"><i class="icon_menu"></i></div>
+            </div>
+
+            <!--logo start-->
+            <a href="index.html" class="logo">DMS <span class="lite">管理员</span></a>
+            <!--logo end-->
+
+            <div class="nav search-row" id="top_menu">
+                <!--  search form start -->
+                <ul class="nav top-menu">
+                  <li>
+                    {% block search %}
+                        <form class="navbar-form">
+                          <input class="form-control" placeholder="Search" type="text">
+                        </form>
+                    {% endblock %}
+                  </li>
+                </ul>
+                <!--  search form end -->
+            </div>
+
+            <div class="top-nav notification-row">
+                <!-- notificatoin dropdown start-->
+                <ul class="nav pull-right top-menu">
+
+                    <!-- task notificatoin start -->
+
+                    <!-- task notificatoin end -->
+
+
+                    <!-- inbox notificatoin start-->
+
+                    <!-- inbox notificatoin end -->
+
+
+                    <!-- alert notification start-->
+
+                    <!-- alert notification end-->
+
+
+                    <!-- user login dropdown start-->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                        <span class="profile-ava">
+{#                                            <img alt="" src={% static "index_base_20220818/img/avatar1_small.jpg" %}>#}
+                                        </span>
+
+                                        <span class="user-name">{{ request.user.last_name }}{{ request.user.first_name }}</span>
+
+                                        <b class="caret"></b>
+                        </a>
+
+                        <ul class="dropdown-menu extended logout">
+                            <div class="log-arrow-up"></div>
+                            <li class="eborder-top">
+                                <a href={% url "dashboard" %}><i class="icon_profile"></i>我的资料</a>
+                            </li>
+                            <li>
+                            <a href={% url "logout" %}><i class="icon_key_alt"></i> Log Out</a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <!-- user login dropdown end -->
+
+                </ul>
+                <!-- notificatoin dropdown end-->
+            </div>
+
+        </header>
+        <!--header end-->
+
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+            <!-- sidebar menu start-->
+                <ul class="sidebar-menu">
+                    <li class="active">
+                        <a class="" href={% url "back_stage:index" %}>
+                            <i class="fa fa-dashboard"></i>
+                            <span>看板</span>
+                        </a>
+                    </li>
+
+
+
+
+
+
+
+
+
+                </ul>
+            <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+                <!--overview start-->
+                <div class="row">
+                  <div class="col-lg-12">
+
+                    <ol class="breadcrumb">
+                    {% block content_header_child %}
+                      <li><i class="fa fa-home"></i><a href={% url "back_stage:dashboard" %}>Home</a></li>
+                      <li><i class="fa fa-laptop"></i>Dashboard</li>
+                    {% endblock %}
+
+                    </ol>
+                  </div>
+                </div>
+
+                {% block main_content %}
+
+
+                    <script src={% static "javascripts/jquery.min.js" %}></script>
+                    <script type="text/javascript" src='C:/cc/python/epwork/dms/collected_static/vendor/data-table/media/js/jquery.dataTables.min.js'></script>
+                    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.3.min.js"></script>
+                    <script type="text/javascript" src=" //cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
+                    <table id="table1" class="table table-condensed ">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>001</td>
+                                        <td>zhang</td>
+                                        <td>98</td>
+                                    </tr>
+                                    <tr>
+                                        <td>002</td>
+                                        <td>wang</td>
+                                        <td>99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>002</td>
+                                        <td>wang</td>
+                                        <td>99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>002</td>
+                                        <td>wang</td>
+                                        <td>99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>002</td>
+                                        <td>wang</td>
+                                        <td>99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>002</td>
+                                        <td>wang</td>
+                                        <td>99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>002</td>
+                                        <td>wang</td>
+                                        <td>99</td>
+                                    </tr>
+
+                                </tbody>
+                    </table>
+
+                    <script>
+
+                        $(document).ready(function(){
+                                $('#table1').dataTable(
+                                    {
+                                        "bLengthChange": true, //开关，是否显示每页显示多少条数据的下拉框
+                                        "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "所有"]],//设置每页显示数据条数的下拉选项
+                                        'iDisplayLength': 5, //每页初始显示5条记录
+                                    }
+                                );
+                            });
+                    </script>
+
+                {% endblock %}
+
+
+            </section>
+            <div class="text-right">
+
+            </div>
+        </section>
+
+        <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
+        <!--main content end-->
+    </section>
+    <!-- container section start -->
+
+    <!-- javascripts -->
+    {#  <script src={% static "index_base_20220818/js/jquery.js" %}></script>#}
+    <script src={% static "index_base_20220818/js/jquery-ui-1.10.4.min.js" %}></script>
+    {#  <script src={% static "index_base_20220818/js/jquery-1.8.3.min.js" %}></script>#}
+    <script type="text/javascript" src={% static "index_base_20220818/js/jquery-ui-1.9.2.custom.min.js" %}></script>
+    <!-- bootstrap -->
+    <script src={% static "index_base_20220818/js/bootstrap.min.js" %}></script>
+    <!-- nice scroll -->
+    <script src={% static "index_base_20220818/js/jquery.scrollTo.min.js" %}></script>
+    <script src={% static "index_base_20220818/js/jquery.nicescroll.js" %} type="text/javascript"></script>
+    <!-- charts scripts -->
+    <script src={% static "index_base_20220818/assets/jquery-knob/js/jquery.knob.js" %}></script>
+    <script src={% static "index_base_20220818/js/jquery.sparkline.js" %} type="text/javascript"></script>
+    <script src={% static "index_base_20220818/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js" %}></script>
+    <script src={% static "index_base_20220818/js/owl.carousel.js" %}></script>
+    <!-- jQuery full calendar -->
+    <script src={% static "index_base_20220818/js/fullcalendar.min.js" %}></script>
+    <!-- Full Google Calendar - Calendar -->
+    <script src={% static "index_base_20220818/assets/fullcalendar/fullcalendar/fullcalendar.js" %}></script>
+    <!--script for this page only-->
+    <script src={% static "index_base_20220818/js/calendar-custom.js" %}></script>
+    <script src={% static "index_base_20220818/js/jquery.rateit.min.js" %}></script>
+    <!-- custom select -->
+    <script src={% static "index_base_20220818/js/jquery.customSelect.min.js" %}></script>
+    <script src={% static "index_base_20220818/assets/chart-master/Chart.js" %}></script>
+
+    <!--custome script for all page-->
+    <script src={% static "index_base_20220818/js/scripts.js" %}></script>
+    <!-- custom script for this page-->
+    <script src={% static "index_base_20220818/js/sparkline-chart.js" %}></script>
+    <script src={% static "index_base_20220818/js/easy-pie-chart.js" %}></script>
+    <script src={% static "index_base_20220818/js/jquery-jvectormap-1.2.2.min.js" %}></script>
+    <script src={% static "index_base_20220818/js/jquery-jvectormap-world-mill-en.js" %}></script>
+    <script src={% static "index_base_20220818/js/xcharts.min.js" %}></script>
+    <script src={% static "index_base_20220818/js/jquery.autosize.min.js" %}></script>
+    <script src={% static "index_base_20220818/js/jquery.placeholder.min.js" %}></script>
+    <script src={% static "index_base_20220818/js/gdp-data.js" %}></script>
+    <script src={% static "index_base_20220818/js/morris.min.js" %}></script>
+    <script src={% static "index_base_20220818/js/sparklines.js" %}></script>
+    <script src={% static "index_base_20220818/js/charts.js" %}></script>
+    <script src={% static "index_base_20220818/js/jquery.slimscroll.min.js" %}></script>
+
+    <script type="text/javascript" src="{%static 'echarts-masterecharts/dist/echarts.min.js'%}"></script>
+    <script type="text/javascript" src="{%static 'static_test.js'%}"></script>
+
+    <script>
+        //knob
+        $(function() {
+        $(".knob").knob({
+          'draw': function() {
+            $(this.i).val(this.cv + '%')
+          }
+        })
+        });
+
+        //carousel
+        $(document).ready(function() {
+        $("#owl-slider").owlCarousel({
+          navigation: true,
+          slideSpeed: 300,
+          paginationSpeed: 400,
+          singleItem: true
+
+        });
+        });
+
+        //custom select box
+
+        $(function() {
+        $('select.styled').customSelect();
+        });
+
+        /* ---------- Map ---------- */
+        $(function() {
+        $('#map').vectorMap({
+          map: 'world_mill_en',
+          series: {
+            regions: [{
+              values: gdpData,
+              scale: ['#000', '#000'],
+              normalizeFunction: 'polynomial'
+            }]
+          },
+          backgroundColor: '#eef3f7',
+          onLabelShow: function(e, el, code) {
+            el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+          }
+        });
+        });
+    </script>
+
+    {% block js %}
+
+
+    <script src={% static "javascripts/template-script.min.js" %}></script>
+    <script src={% static "javascripts/template-init.min.js" %}></script>
+    <script src={% static "vendor/bootstrap_max-lenght/bootstrap-maxlength.js" %}></script>
+    <script src={% static "vendor/select2/js/select2.min.js" %}></script>
+    <script src={% static "vendor/input-masked/inputmask.bundle.min.js" %}></script>
+    <script src={% static "vendor/input-masked/phone-codes/phone.js" %}></script>
+    <script src={% static "vendor/bootstrap_time-picker/js/bootstrap-timepicker.js" %}></script>
+    <script src={% static "javascripts/examples/forms/advanced.js" %}></script>
+    <script src={% static "vendor/toastr/toastr.min.js" %}></script>
+    <script src={% static "vendor/chart-js/chart.min.js" %}></script>
+    <script src={% static "vendor/magnific-popup/jquery.magnific-popup.min.js" %}></script>
+    <script src={% static "javascripts/examples/dashboard.js" %}></script>
+    <script src={% static "vendor/data-table/media/js/jquery.dataTables.min.js" %}></script>
+    <script src={% static "vendor/data-table/media/js/dataTables.bootstrap.min.js" %}></script>
+    <script src={% static "vendor/data-table/extensions/Responsive/js/dataTables.responsive.min.js" %}></script>
+    <script src={% static "vendor/data-table/extensions/Responsive/js/responsive.bootstrap.min.js" %}></script>
+    <script src={% static "javascripts/examples/tables/data-tables.js" %}></script>
+
+
+{#    <script src={% static "javascripts/jquery.min.js" %}></script>#}
+    <script src={% static "javascripts/jquery.cookie.js" %}></script>
+{#    <script src={% static "vendor/bootstrap/js/bootstrap.min.js" %}></script>#}
+    <script src={% static "vendor/nano-scroller/nano-scroller.js" %}></script>
+    <script src={% static "javascripts/template-script.min.js" %}></script>
+    <script src={% static "javascripts/template-init.min.js" %}></script>
+    <script src={% static "vendor/data-table/media/js/jquery.dataTables.min.js" %}></script>
+    <script src={% static "vendor/data-table/media/js/dataTables.bootstrap.min.js" %}></script>
+    <script src={% static "javascripts/examples/tables/data-tables.js" %}></script>
+
+
+
+
+    <script>
+        $.fn.extend({
+            animateCss: function(animationName) {
+                var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+                this.addClass('animated ' + animationName).one(animationEnd, function() {
+                    $(this).removeClass('animated ' + animationName);
+                });
+            }
+        });
+
+        $(".btn-animated").on('click', function() {
+            var animation = $(this).attr('data-animated-class');
+            var img = $(this).attr('data-img');
+            $("#" + img).animateCss(animation);
+        });
+    </script>
+
+{% endblock %}
+
+</body>
+
+</html>

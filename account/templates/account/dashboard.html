@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}
+看板
+{% endblock %}
+
+{% block content %}
+    <h1>看板</h1>
+{#    <p>Welcome to your dashboard.</p>#}
+    <p>欢迎来到我的看板。你可以 <a href="{% url 'edit' %}">编辑你的资料</a> 或者 <a href="{% url "password_change" %}">修改你的密码</a>。</p>
+{% endblock %}

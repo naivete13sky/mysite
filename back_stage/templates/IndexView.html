@@ -1,0 +1,500 @@
+{% extends 'index_base_20221117.html' %}
+{% load static  %}
+{% block title %}个人主页{% endblock %}
+{% block header_menu %}
+    <a href="{% url "blog:PostListView" %}" class="logo"><span class="lite">打开博客</span></a>
+{% endblock %}
+{% block header_dropdown %}
+
+{% endblock %}
+{% block content_header_child %}
+    <li><i class="fa fa-home" aria-hidden="true"></i><a href={% url "back_stage:index" %}>个人简历</a></li>
+{#    <li><a>看板</a></li>#}
+{% endblock %}
+{% block main_content %}
+    <script src={% static "javascripts/jquery.min.js" %}></script>
+
+
+    <div class="row animated fadeInUp">
+        <div class="col-sm-12">
+            <div class="panel">
+                <div class="panel-content">
+                    <div class="row">
+{#                        <h6>即将上线中！</h6>#}
+                        <div class="col-md-12">
+                            {#--------------------------------------开始--表格--------------------------------------#}
+                        </div>
+
+                    </div>
+
+                    <div class="page-body">
+
+            <div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <div>
+                            <div class="profile-photo">
+                                <img alt="Jane Doe" src={% static 'images/cc2.jpg' %} />
+                            </div>
+                            <div class="user-header-info">
+                                <h2 class="user-name">陈成</h2>
+                                <h5 class="user-position">数据狗</h5>
+								<h5 class="user-position">测试狗</h5>
+{#                                <div class="user-social-media">#}
+{#                                    <span class="text-lg"><a href="#" class="fa fa-twitter-square"></a> <a href="#" class="fa fa-facebook-square"></a> <a href="#" class="fa fa-linkedin-square"></a> <a href="#" class="fa fa-google-plus-square"></a></span>#}
+{#                                </div>#}
+                            </div>
+                        </div>
+                        <div class="panel bg-scale-0 b-primary bt-sm mt-xl">
+                            <div class="panel-content">
+                                <h4 class=""><b>联系信息</b></h4>
+                                <ul class="user-contact-info ph-sm">
+                                    <li><b><i class="color-primary mr-sm fa fa-envelope"></i></b> chen320821@163.com</li>
+                                    <li><b><i class="color-primary mr-sm fa fa-phone"></i></b> 133 3891 5352</li>
+                                    <li><b><i class="color-primary mr-sm fa fa-globe"></i></b> 陈成, 苏州</li>
+                                    <li class="mt-sm">
+                                        喜欢技术，善于沟通；<br>
+                                        6年测试开发（精通 Python）；<br>
+                                        10年数据治理经验；<br>
+                                        8年管理（4年基层+4年中层）；<br>
+
+                                        测试能力：框架（Pytest）；自动化测试（Selenium|Pywinauto）；接口性能自动化测试（Locust）；<br>
+                                        开发能力：网站(Django|HTML|JS)；桌面（Pyqt5）；爬虫（Requests|Scrapy|Selenium|Fiddler|Charles）；数据库（PostgresSQL|MSSQL|MYSQL）；<br>
+                                        数据能力：BI  工具（Power BI）；精通 Excel；ETL（Power Query|Pandas）；<br>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 col-lg-8">
+                        <div class="timeline animated fadeInUp">
+							<div class="timeline-box">
+                                <div class="timeline-icon bg-primary">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4 class="tl-title">苏州悦谱半导体有限公司——运营副总监</h4> 技术管理、流程管理、测试管理
+                                </div>
+                                <div class="timeline-footer">
+                                    <span>2020年~至今</span>
+                                </div>
+                            </div>
+                            <div class="timeline-box">
+                                <div class="timeline-icon bg-primary">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4 class="tl-title">苏州瑞翼信息技术有限公司——数据部副经理</h4> 开通管理、对账管理、业务管理、平台管理
+                                </div>
+                                <div class="timeline-footer">
+                                    <span>2013年~2020年</span>
+                                </div>
+                            </div>
+                            <div class="timeline-box">
+                                <div class="timeline-icon bg-primary">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4 class="tl-title">华为技术有限公司（总部）——GTS工时分析师 </h4> 工时申报管理、工时系统的运作维护、人员效率统计、工时报告
+                                </div>
+                                <div class="timeline-footer">
+                                    <span>2011年-2012年</span>
+                                </div>
+                            </div>
+                            <div class="timeline-box">
+                                <div class="timeline-icon bg-primary">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4 class="tl-title">南京大学（管理学硕士）——情报学</h4> 网络安全、竞争情报、信息管理
+                                </div>
+                                <div class="timeline-footer">
+                                    <span>2008年–2011年</span>
+                                </div>
+                            </div>
+                            <div class="timeline-box">
+                                <div class="timeline-icon bg-primary">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4 class="tl-title">南京邮电大学（管理学学士）——信息管理与信息系统</h4> 计算机、管理学
+                                </div>
+                                <div class="timeline-footer">
+                                    <span>2004年–2008年</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            <div class="panel panel-accordion">
+                <div class="panel-header panel-primary">
+                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#accordion_group6" href="#accordion-bg-6" style=color:black;>
+                        测试技能（点击收起）
+                    </a>
+                </div>
+                <div id="accordion-bg-6" class="panel-collapse collapse in">
+                    <div class="panel-content">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <div class="panel-content">
+                                        <h1 class="title color-light-1"><i class="fa fa-globe"></i> Web自动化测试 </h1>
+                                        <a href="/blog/tag/selenium/">
+                                            <h4 class="subtitle">Selenium</h4>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"><i class="fa fa-globe"></i> Web自动化测试 </h1>
+                                            <h4 class="subtitle">抓包：Fiddler/Charles</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"><i class="fa fa-globe"></i> Web自动化测试 </h1>
+                                            <h4 class="subtitle">PO模式</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"> <i class="fa fa-globe"></i> 桌面自动化测试 </h1>
+                                            <h4 class="subtitle">Pywinauto</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"> <i class="fa fa-globe"></i> 缺陷管理 </h1>
+                                            <h4 class="subtitle">禅道</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"> <i class="fa fa-globe"></i> 自动化测试框架 </h1>
+                                            <h4 class="subtitle">Pytest</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"><i class="fa fa-globe"></i> 接口测试 </h1>
+                                            <h4 class="subtitle">Requests</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"> <i class="fa fa-globe"></i> 持续集成 </h1>
+                                            <h4 class="subtitle">Jenkins</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"> <i class="fa fa-globe"></i> 数据库 </h1>
+                                            <h4 class="subtitle">MySQL/MsSQL/Postgre ...</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"> <i class="fa fa-globe"></i> 性能测试 </h1>
+                                            <h4 class="subtitle">Locust</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"> <i class="fa fa-globe"></i> 基础理论 </h1>
+                                            <h4 class="subtitle">功能测试方法</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <div class="panel-content">
+                                        <h1 class="title color-light-1"> <i class="fa fa-globe"></i> 编程 </h1>
+                                        <h4 class="subtitle"><a href="/blog/tag/python/">Python</a>/Web/Desktop ...</h4>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <p>  </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel panel-accordion">
+                <div class="panel-header panel-primary">
+                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#accordion_group6" href="#accordion-bg-7" style=color:black;>
+                        开发技能（点击收起）
+                    </a>
+                </div>
+                <div id="accordion-bg-7" class="panel-collapse collapse in">
+                    <div class="panel-content">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"><i class="fa fa-globe"></i> 语言 </h1>
+                                            <h4 class="subtitle">VBA/Python ...</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"><i class="fa fa-globe"></i> 桌面程序开发 </h1>
+                                            <h4 class="subtitle">Pyqt</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+
+                                    <div class="panel-content">
+                                        <h1 class="title color-light-1"><i class="fa fa-globe"></i> Web </h1>
+                                        <h4 class="subtitle"><a href="/blog/tag/django/">Django</a>/Flask/Html/部署</h4>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"> <i class="fa fa-globe"></i> 爬虫 </h1>
+                                            <h4 class="subtitle">抓包/Fiddler/Requests</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"> <i class="fa fa-globe"></i> ETL </h1>
+                                            <h4 class="subtitle">Power Query、Pandas、SQL</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                        <p>  </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel panel-accordion">
+                <div class="panel-header panel-primary">
+                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#accordion_group6" href="#accordion-bg-8" style=color:black;>
+                        数据处理（点击收起）
+                    </a>
+                </div>
+                <div id="accordion-bg-8" class="panel-collapse collapse in">
+                    <div class="panel-content">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"><i class="fa fa-globe"></i> 数据收集 </h1>
+                                            <h4 class="subtitle">数据库、爬虫</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"><i class="fa fa-globe"></i> 数据处理 </h1>
+                                            <h4 class="subtitle">ETL、Excel、Python</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"><i class="fa fa-globe"></i> 数据分析 </h1>
+                                            <h4 class="subtitle">Excel、Python、Power BI</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"> <i class="fa fa-globe"></i> 可视化 </h1>
+                                            <h4 class="subtitle">BI、Python、Echarts、PPT</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"> <i class="fa fa-globe"></i> ETL </h1>
+                                            <h4 class="subtitle">Power Query、Pandas、SQL</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"> <i class="fa fa-globe"></i> 数学 </h1>
+                                            <h4 class="subtitle">概率统计</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"><i class="fa fa-globe"></i> 统计分析 </h1>
+                                            <h4 class="subtitle">层次、回归、聚类……</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="#">
+                                        <div class="panel-content">
+                                            <h1 class="title color-light-1"><i class="fa fa-globe"></i> Excel </h1>
+                                            <h4 class="subtitle">公式、透视、图表、VBA</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                        <p>  </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel panel-accordion">
+                <div class="panel-header panel-primary">
+                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#accordion_group6" href="#accordion-bg-9" style=color:black;>
+                        其它（点击收起）
+                    </a>
+                </div>
+                <div id="accordion-bg-9" class="panel-collapse collapse in">
+                    <div class="panel-content">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="panel widgetbox wbox-1 bg-darker-2 color-light">
+                                    <a href="{% url "blog:PostListView" %}">
+                                        <div class="panel-content">
+
+                                            <h1 class="title color-light-1"><i class="fa fa-globe"></i> <a href="{% url "blog:PostListView" %}">博客</a> </h1>
+                                            <h4 class="subtitle"><a href="{% url "blog:PostListView" %}">学习、心得</a></h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+                        <p>  </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div align="center">
+    {#        <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">苏ICP备18069791号-1</a>#}
+        <a target="_blank" href="https://beian.miit.gov.cn/" ><p>苏ICP备18069791号-1</p></a>
+    </div>
+
+    {#    <div style="width:300px;margin:0 auto; padding:20px 0;">#}
+    <div align="center">
+
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32050802010946" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="\static\images\备案图标.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">苏公网安备 32050802010946号</p></a>
+    </div>
+
+{% endblock %}
+<script src={% static "javascripts/jquery.min.js" %}></script>
+

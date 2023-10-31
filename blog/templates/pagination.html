@@ -1,0 +1,107 @@
+{% load static  %}
+<div class="pagination">
+    <script src={% static "javascripts/jquery.min.js" %}></script>
+
+    <span class="step-links">
+        <ul class="pagination">
+            {# 上一页 #}
+            {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}">上一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="javascript:void(0);">上一页</a></li>
+            {% endif %}
+            {# 中间左边部分 #}
+            {% if left_has_more %}
+{#                <li><a href="{% url 'blog:PostListView' %}?page=1">1</a></li>#}
+                <li><a href="?page=1">1</a></li>
+                <li><a href="javascript:void(0);">...</a></li>
+                {% for page in left_range %}
+                    <li><a href="?page={{ page }}">{{ page }}</a></li>
+                {% endfor %}
+            {% else %}
+                {% for page in left_range %}
+                    <li><a href="?page={{ page }}">{{ page }}</a></li>
+                {% endfor %}
+            {% endif %}
+            {# 中间部分当前页 #}
+            <li class="active"><a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+            {# 中间右边部分 #}
+            {% if right_has_more %}
+                {% for page in right_range %}
+                    <li><a href="?page={{ page }}">{{ page }}</a></li>
+                {% endfor %}
+                <li><a href="javascript:void(0);">...</a></li>
+                <li><a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a></li>
+            {% else %}
+                {% for page in right_range %}
+                    <li><a href="?page={{ page }}">{{ page }}</a></li>
+                {% endfor %}
+            {% endif %}
+            {# 下一页 #}
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">下一页</a></li>
+            {% else %}
+                <li class="disabled"><a href="javascript:void(0);">下一页</a></li>
+            {% endif %}
+
+            <span class="current">
+                <span class="step-links">
+                    第
+                    <input type="text" style="width:40px;" class="page_jump" id="page_jump" placeholder="" value={{ page.number }} onkeydown="if(event.keyCode==13) {test()}">
+                    页
+                    <button type="submit" class="btn_page_jump">跳转</button>
+                </span>
+
+            </span>
+{#            共 {{ page.paginator.num_pages }}页#}
+            共 {{ pages_count }}页
+
+        </ul>
+    </span>
+
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+        $(function(){
+            $('.btn_page_jump').click(function(){
+                console.log("btn_page_jump clicked")
+                $.ajax( {
+                        type : "post",
+                        url : "",
+                        dataType : "text",
+                        data:{
+                            "page_jump":$("#page_jump").val(),
+                            "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
+                        },   //指定要提交给后端的数据
+
+                        success : function(data) {
+                            {#alert(data);#}
+                            window.location.href = "?page="+$("#page_jump").val() ;
+                        },
+                        error : function(data) {
+                            alert("系统错误，操作失败");
+                        }
+                    });
+            });
+        });
+    </script>
+
+
+
+    <script>
+        function test() {
+           {#alert(123);#}
+           $('.btn_page_jump').click()
+        }
+    </script>
+
+</div>
+
