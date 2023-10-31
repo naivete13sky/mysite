@@ -1,0 +1,6 @@
+
+在/var/www/mysite下pull时，要用sudo权限，但是不能用sudo的环境变量。所以用下述命令拉取代码。
+sudo -E git pull origin master
+
+
+sudo systemctl restart apache2
