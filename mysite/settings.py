@@ -207,6 +207,8 @@ LOGOUT_URL = 'logout'
 CASBIN_MODEL = os.path.join(BASE_DIR, 'casbin.conf')
 
 
+
+
 # <---------------------------------------------------simpleui--------------------------------------------------------->
 # 隐藏simpleui主页信息
 SIMPLEUI_HOME_INFO = False
@@ -221,3 +223,103 @@ SIMPLEUI_HOME_INFO = False
 SIMPLEUI_DEFAULT_THEME = 'admin.lte.css'
 
 
+
+
+
+
+
+# 修改默认首页
+# SIMPLEUI_HOME_PAGE = 'http://127.0.0.1:8000/back_stage/'
+SIMPLEUI_HOME_PAGE = '../blog/'
+SIMPLEUI_HOME_TITLE = '看板'
+SIMPLEUI_HOME_ICON = 'fa-solid fa-gauge'
+
+
+# 设置simpleui 点击首页图标跳转的地址；首页顶部首页图标默认跳转地址为/，即根目录；
+# SIMPLEUI_INDEX = 'https://www.88cto.com'
+
+
+
+
+
+
+
+
+
+# 'http://127.0.0.1:8000/admin/#/admin/job/job/'
+SIMPLEUI_CONFIG = {
+    #system_keep 保留系统菜单,该字段用于告诉simpleui，是否需要保留系统默认的菜单，默认为False，不保留。 如果改为True，自定义和系统菜单将会并存
+    'system_keep': True,
+    # menu_display过滤显示菜单和排序功能,该字段用于告诉simpleui，是否需要开启过滤显示菜单和排序功能。
+    # 默认可以不用填写，缺省配置为默认排序，不对菜单进行过滤和排序。
+    # 开启认为传一个列表，如果列表为空，则什么也不显示。列表中的每个元素要对应到menus里面的name字段
+    'menu_display': ['博客','用户信息', '权限认证','站点'],
+    #dynamic 开启动态菜单功能,该字段用于告诉simpleui，是否需要开启动态菜单功能。
+    # 默认可以不用填写，缺省配置为False，不开启动态菜单功能。开启为True，开启后，每次用户登陆都会刷新左侧菜单配置。
+    # 需要注意的是：开启后每次访问admin都会重读配置文件，所以会带来额外的消耗。
+    'dynamic': True,    # 设置是否开启动态菜单, 默认为False. 如果开启, 则会在每次用户登陆时动态展示菜单内容
+    # menus,如果SIMPLEUI_CONFIG中存在menus字段，将会覆盖系统默认菜单。并且menus中输出的菜单不会受权限控制。
+    'menus':
+        [
+            {
+                'app': 'blog',
+                'name': '博客',
+                'icon': 'fa-solid fa-list',
+                'models': [
+                    {
+                        'name': '博客管理',
+                        'icon': 'fa-solid fa-list',
+                        'url': '/admin/blog/post/'
+                    },
+                    {
+                        'name': '评论管理',
+                        'icon': 'fa-solid fa-laptop-code',
+                        'url': '/admin/blog/comment/'
+                    }
+                ]
+            },            
+
+            {
+                'app': 'account',
+                'name': '用户信息',
+                'icon': 'fa-regular fa-user',
+                'models': [
+                    {
+                        'name': '用户信息',
+                        'icon': 'fa fa-user',
+                        'url': '/admin/account/profile/'
+                    },
+                    
+
+                ]
+            },
+
+
+
+            {
+                'app': 'auth',
+                'name': '权限认证',
+                'icon': 'fas fa-user-shield',
+                'models':
+                    [
+                        {
+                            'name': '组',
+                            'icon': 'fa fa-user',
+                            'url': 'auth/group/'
+                        },
+                        {
+                            'name': '用户',
+                            'icon': 'fa fa-user',
+                            'url': 'auth/user/'
+                        },
+                    ]
+            },
+
+
+        ]
+
+
+}
+
+
+# <---------------------------------------------------simpleui--------------------------------------------------------->
