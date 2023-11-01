@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+SITE_ID = 1
+
 
 # Application definition
 
@@ -45,6 +47,9 @@ INSTALLED_APPS = [
     'taggit',
     'back_stage.apps.BackStageConfig',
     'casbin_adapter.apps.CasbinAdapterConfig',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'django.contrib.postgres',#全文搜索用
     
 ]
 
