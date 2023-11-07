@@ -3,15 +3,15 @@
 {% load blog_tags %}
 {% block title %}博客{% endblock %}
 {% block header_menu %}
-    <a href="{% url "back_stage:index" %}" class="logo"><span class="lite">博主</span></a>
+    <a href="{% url "back_stage:index" %}" class="logo"><span class="lite">博主简历</span></a>
     <a class="logo"><span class="lite">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span></a>
-    <a href="{% url "blog:PostListView" %}" class="logo"><span class="lite">博客</span></a>
+    <a href="{% url "blog:PostListView" %}" class="logo"><span class="lite">文章列表</span></a>
 {% endblock %}
 
 
 
 {% block content_header_child %}
-    <li><i class="fa fa-home"></i><a href={% url 'blog:PostListView' %}>博客</a></li>
+    <li><i class="fa fa-home"></i><a href={% url 'blog:PostListView' %}>文章列表</a></li>
 
 {% endblock %}
 
