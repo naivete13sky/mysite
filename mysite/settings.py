@@ -203,6 +203,8 @@ LOGIN_URL = 'login'
 # 用户需要登出的时候被重定向到的URL地址
 LOGOUT_URL = 'logout'
 
+LOGOUT_REDIRECT_URL = 'login'  # logout,redirect to
+
 
 CASBIN_MODEL = os.path.join(BASE_DIR, 'casbin.conf')
 
