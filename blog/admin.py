@@ -5,6 +5,11 @@ from django.utils.translation import gettext_lazy as _
 # admin.site.register(Post)
 
 
+# 更改管理后台名称
+admin.site.site_header = '博客管理系统'
+admin.site.site_title = '博客管理系统'
+
+
 #为了实现在admin后台可页面上设置每页显示条数，通过下面方法，要创建一个过滤器PageSizeFilter。
 #还要创建一个CustomModelAdmin类，这个类实现changelist_view方法。因为在过滤器PageSizeFilter无法重写changelist_view，所以要写此类实现类似效果。
 class PageSizeFilter(admin.SimpleListFilter):
