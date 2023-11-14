@@ -109,7 +109,7 @@
 {#                                            <img alt="" src={% static "index_base_20220818/img/avatar1_small.jpg" %}>#}
                                 </span>
                                 {% if request.user.username != '' %}
-                                    <span class="user-name">{{ request.user.first_name }}{{ request.user.last_name }}</span>
+                                    <span class="user-name">{{ request.user.last_name }}{{ request.user.first_name }}</span>
                                 {% endif %}
                                 {% if request.user.username == '' %}
                                     <span class="user-name">游客</span>

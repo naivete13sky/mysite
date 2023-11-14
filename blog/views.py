@@ -198,7 +198,7 @@ class PostDetailView(DetailView):
             print("POST!!!")
             #先判断一下是否有评论权限
             sub = request.user.username  # 想要访问资源的用户
-            obj = "blog_comment"  # 将要被访问的资源
+            obj = "post_detail_comment"  # 将要被访问的资源
             act = "post"  # 用户对资源进行的操作
             print('sub,obj,act:', sub, obj, act)
             if enforcer.enforce(sub, obj, act):
@@ -227,7 +227,7 @@ class PostDetailView(DetailView):
                                    'comment_form': comment_form,
                                    'similar_posts': similar_posts})
             else:
-                return HttpResponse("游客无此权限！请先登录！")
+                return HttpResponse("您暂无评论权限，请联系管理员开通权限！")
 
 
 def post_detail(request, year, month, day, post):
