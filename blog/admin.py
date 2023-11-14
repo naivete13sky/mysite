@@ -70,7 +70,7 @@ class PostAdmin(CustomModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'post', 'created', 'active')
+    list_display = ('name', 'email', 'post', 'body', 'created', 'active')
     list_filter = ('active', 'created', 'updated')
     search_fields = ('name', 'email', 'body')
     list_per_page = 20  # 设置每页显示的行数为 20
