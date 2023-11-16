@@ -1,4 +1,14 @@
 {% load static  %}
+<head>
+    <!-- 其他头部内容 -->
+
+    <style>
+        .form-control {
+            display: inline-block;
+        }
+    </style>
+</head>
+
 <div class="pagination">
     <script src={% static "javascripts/jquery.min.js" %}></script>
 
@@ -47,7 +57,7 @@
             <span class="current">
                 <span class="step-links">
                     第
-                    <input type="text" style="width:40px;" class="page_jump" id="page_jump" placeholder="" value={{ page.number }} onkeydown="if(event.keyCode==13) {test()}">
+                    <input type="text" style="width:40px;" class="form-control" id="page_jump" placeholder="" value={{ page.number }} onkeydown="if(event.keyCode==13) {test()}">
                     页
                     <!-- class="btn_page_jump btn btn-primary",
                         在HTML和CSS中，一个元素可以有多个类，类名之间使用空格分隔                                               
