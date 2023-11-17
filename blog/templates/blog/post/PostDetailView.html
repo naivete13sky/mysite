@@ -102,7 +102,7 @@
                             </div>
                             
                             <!-- 下述代码块是main_content块中的中间。class="col-md-6 col-lg-8" -->
-                            <div class="col-md-6 col-lg-8" style="padding-left: 50px; padding-right: 50px;">                               
+                            <div class="col-md-6 col-lg-8" style="padding-left: 50px; padding-right: 50px;">                        
                                 
                                 
                                 <h1>{{ post.title }}</h1>
@@ -113,7 +113,7 @@
                                     }
                                 </style>
                                 <p class="date">
-                                    {{ post.publish }} | {{ post.author }}
+                                    {{ post.publish }} | {{ post.author }}|
                                     标签：
                                         {% for tag in post.tags.all %}
                                             <a href="{% url "blog:post_list_by_tag" tag.slug %}">{{ tag.name }}</a>
