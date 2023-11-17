@@ -107,7 +107,7 @@
                                 
                                 <h1>{{ post.title }}</h1>
                                 <p class="date">
-                                    Published {{ post.publish }} by {{ post.author }}
+                                    {{ post.publish }} | {{ post.author }}
                                 </p>
                             
                                 {{ post.body|markdown }}
