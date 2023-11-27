@@ -28,8 +28,8 @@
                     <div class="page-body" style=padding-top:2px;>
                         <div class="row" style="padding-left: 50px; padding-right: 200px;">
                             
-                            <!-- 下述代码块是main_content块中的左侧。class="col-md-6 col-lg-2" -->
-                            <div class="col-md-6 col-lg-2" style="padding-top: 30px;">
+                            <!-- 下述代码块是main_content块中的左侧。class="col-sm-2 col-md-2 col-lg-2" -->
+                            <div class="col-sm-12 col-md-2 col-lg-2" style="padding-top: 30px;">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         {% comment %} <label>&ensp;标签：&ensp;</label> {% endcomment %}
@@ -42,7 +42,7 @@
                             
                             
                             <!-- 下述代码块是main_content块中的中间。class="col-md-6 col-lg-8" -->
-                            <div class="col-md-6 col-lg-8" style="padding-left: 50px; padding-right: 50px;">   
+                            <div class="col-sm-12 col-md-6 col-lg-8" style="padding-left: 50px; padding-right: 50px;">   
                                 {% for post in posts_page %}
 
                                     <div class="row">
@@ -89,7 +89,7 @@
                             </div>
 
                             <!-- 下述代码块是main_content块中的右侧。class="col-md-6 col-lg-2" -->
-                            <div class="col-md-6 col-lg-2">
+                            <div class="col-sm-12 col-md-6 col-lg-2">
                                 <div>
                                     <h2>文章列表</h2>
                                     <p>我已经写了{% total_posts %} 篇文章</p>
