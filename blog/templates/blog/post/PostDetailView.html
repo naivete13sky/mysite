@@ -87,10 +87,16 @@
                 <div class="panel-content" style=padding:12px;>
 
                     <div class="page-body" style=padding-top:2px;>
-                        <div class="row" style="padding-left: 50px; padding-right: 200px;">
+                        <div class="row" style="padding-left: 10px; padding-right: 10px;">
+
+                            <!-- 下述代码块是main_content块中的左侧空白边距用。 -->
+                            <div class="col-sm-1 col-md-1 col-lg-1" style="padding-top: 10px;">
+                                <div class="row">                                    
+                                </div>
+                            </div>
                             
                             <!-- 下述代码块是main_content块中的左侧。class="col-md-6 col-lg-2" -->
-                            <div class="col-md-6 col-lg-2" style="padding-top: 50px;">
+                            <div class="col-md-6 col-lg-2" style="padding-top: 10px;">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         {% comment %} <label>&ensp;标签：&ensp;</label> {% endcomment %}
@@ -102,7 +108,7 @@
                             </div>
                             
                             <!-- 下述代码块是main_content块中的中间。class="col-md-6 col-lg-8" -->
-                            <div class="col-md-6 col-lg-8" style="padding-left: 50px; padding-right: 50px;">                    
+                            <div class="col-md-6 col-lg-6" style="padding-left: 10px; padding-right: 10px;">                    
                                                                 
                                 <h1>{{ post.title }}</h1>
                                 <style>
@@ -212,6 +218,12 @@
 
                                     <p><a href='{% url "blog:post_feed" %}'>RSS订阅</a></p>
 
+                                </div>
+                            </div>
+
+                            <!-- 下述代码块是main_content块中的右侧空白边距用。 -->
+                            <div class="col-sm-1 col-md-1 col-lg-1" style="padding-top: 10px;">
+                                <div class="row">                                    
                                 </div>
                             </div>
 
