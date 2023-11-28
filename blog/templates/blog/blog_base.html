@@ -2,6 +2,9 @@
 {% load static  %}
 {% load blog_tags %}
 {% block title %}博客{% endblock %}
+{% block head%}
+    {{ block.super }}
+{% endblock%}
 {% block header_menu %}
     <a href="{% url "back_stage:index" %}" class="logo"><span class="lite">博主简历</span></a>
     <a class="logo"><span class="lite">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span></a>
