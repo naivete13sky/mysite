@@ -1,4 +1,4 @@
-{% extends 'index_base_20221117.html' %}
+{% extends 'index_base_20231201.html' %}
 {% load static  %}
 {% load blog_tags %}
 {% block title %}博客{% endblock %}
@@ -13,10 +13,10 @@
 
 
 
-{% block content_header_child %}
+{% comment %} {% block content_header_child %}
     <li><i class="fa fa-home"></i><a href={% url 'blog:PostListView' %}>文章列表</a></li>
 
-{% endblock %}
+{% endblock %} {% endcomment %}
 
 {% block main_content %}
     <script src={% static "javascripts/jquery.min.js" %}></script>
