@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 
+from blog.serializer import PostSerializer
+
 from .models import Post, Comment,MyTagForPost
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView,DetailView
@@ -15,6 +17,9 @@ from django.contrib.auth.decorators import login_required
 
 from casbin_adapter.enforcer import enforcer
 import functools
+
+from rest_framework import viewsets
+
 
 
 #写了一个带参数的装饰器，用在cretview上面，可以先判断权限。
@@ -304,3 +309,9 @@ def post_search(request):
 
             print('query:',query,"results:",results)
     return render(request, 'blog/post/search.html', {'query': query, "form": form, 'results': results})
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
