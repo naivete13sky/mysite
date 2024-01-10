@@ -101,7 +101,6 @@
                             </div>
                             
                             <!-- 下述代码块是main_content块中的左侧。class="col-md-6 col-lg-2" -->
-                            
                             <div class="col-md-6 col-lg-2" style="padding-top: 10px; padding-right: 50px;">
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -112,7 +111,6 @@
                                     </div>
                                 </div>
                                 <div id="article-navigation">
-                                    
                                     <h2>文章目录</h2>
                                     <ul id="article-toc"></ul>
                                 </div>
@@ -122,24 +120,13 @@
                                         var toc = document.getElementById("article-toc");
                                         {% comment %} var sections = document.querySelectorAll("#content h2"); {% endcomment %}
                                         var sections = document.querySelectorAll("#content strong");
-                                        
-                                        
                             
                                         sections.forEach(function (section) {
                                             var listItem = document.createElement("li");
                                             var link = document.createElement("a");
                             
-                                            {% comment %} link.textContent = section.textContent; {% endcomment %}
-                                            {% comment %} link.href = "#" + section.id; {% endcomment %}
-                                            {% comment %} alert(link.textContent); {% endcomment %}
-
-                                            // 获取strong标签中的文本内容，作为链接的href属性
-                                            var sectionText = section.textContent.trim();
-                                            link.textContent = sectionText;
-
-                                            // 使用 sectionText 作为链接的锚点
-                                            link.href = "#" + encodeURIComponent(sectionText);
-                                            
+                                            link.textContent = section.textContent;
+                                            link.href = "#" + section.id;
                             
                                             listItem.appendChild(link);
                                             toc.appendChild(listItem);
