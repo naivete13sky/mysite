@@ -56,6 +56,15 @@
             }
         }
 
+        
+        #form-control {
+            max-width: 200px; /* 设置为您期望的最大宽度 */
+            width: 100%;
+            margin-left: auto; /* 将左边距设置为自动，使其靠在右侧 */
+            display: block; /* 使其成为块级元素，以适应父元素的宽度 */
+        }
+        
+
     </style>
 
     {% block head_add %}
@@ -73,10 +82,24 @@
         {% endblock %}
         
         <!-- 搜索框 -->
-        <form class="form-inline my-2 my-lg-0 ml-auto">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-<!--            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>-->
-        </form>
+        
+            {% block search %}
+                {% csrf_token %}
+                <script src={% static "javascripts/jquery.min.js" %}></script>
+                <input class="form-control" id="form-control" placeholder="文章名称、内容" type="search" onkeydown="if(event.keyCode==13) {search_by_post_title_body()}">
+
+                <script>
+                    function search_by_post_title_body() {           
+                        var searchValue = $("#form-control").val(); // 获取表单字段的值
+                        var url = "{% url 'blog:PostListView' %}?search_by_post_title_body=" + searchValue;
+                        window.location.href = url;
+                    }
+                </script>
+
+            {% endblock %}
+            {% comment %} <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> {% endcomment %}
+
+        
 
         <!-- 用户登录状态 -->
 
