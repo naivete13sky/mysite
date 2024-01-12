@@ -103,7 +103,7 @@
 {% block main_content %}
     <script src={% static "javascripts/jquery.min.js" %}></script>
 
-                       
+    <div id="content" class="" style="padding-left: 5px; padding-right: 5px;">                    
                                                                     
         <h1>{{ post.title }}</h1>
         <style>
@@ -189,7 +189,7 @@
             <h2>Posts tagged with "{{ tag.name }}"</h2>
         {% endif %}
 
-    
+    </div>
 
     <div align="center">
         {#        <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">苏ICP备2023005863号</a>#}
