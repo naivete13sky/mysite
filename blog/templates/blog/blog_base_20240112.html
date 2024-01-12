@@ -79,16 +79,56 @@
         </form>
 
         <!-- 用户登录状态 -->
-        <div class="dropdown ml-2">
-            <button class="btn btn-outline-light dropdown-toggle border-0" type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                User
-            </button>
-            <div class="dropdown-menu" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">Profile</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Logout</a>
+
+        {% block header_dropdown %}
+            <div class="dropdown ml-2">            
+                <span class="profile-ava">
+                </span>
+                {% if request.user.username != '' %}
+                    {% comment %} <span class="user-name">{{ request.user.last_name }}{{ request.user.first_name }}</span> {% endcomment %}
+                    <button class="btn btn-outline-light dropdown-toggle border-0" type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ request.user.last_name }}{{ request.user.first_name }}
+                    </button>
+                {% endif %}
+                {% if request.user.username == '' %}
+                    {% comment %} <span class="user-name">游客</span> {% endcomment %}
+                    <button class="btn btn-outline-light dropdown-toggle border-0" type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        游客
+                    </button>
+                {% endif %}
+
+                <b class="caret"></b>
+                <ul class="dropdown-menu extended logout">
+                    <div class="log-arrow-up"></div>
+                    <li class="eborder-top">
+                        <a href={% url "dashboard" %}><i class="icon_profile"></i>我的资料</a>
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li>
+                        {% if request.user.username != '' %}
+                            <a href={% url "logout" %}><i class="icon_key_alt"></i> 退出</a>
+                        {% endif %}
+                        {% if request.user.username == '' %}
+                            <a href={% url "login" %}><i class="icon_key_alt"></i> 登录</a>
+                        {% endif %}
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li>
+                        {% if request.user.username == '' %}
+                            <a href={% url "register" %}><i class="icon_key_alt"></i> 注册 </a>
+                        {% endif %}
+                    </li>
+                </ul>
+                <div class="dropdown-menu" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Logout</a>
+                </div>
             </div>
-        </div>
+            
+        {% endblock %}
+
+        
     </nav>
 
     <!-- 主体内容 -->

@@ -11,6 +11,12 @@
     {{ block.super }}
 {% endblock %}
 
+{% block header_menu %}
+    <a href="{% url "back_stage:index" %}" class="logo"><span class="lite">博主简历</span></a>
+    <a class="logo"><span class="lite">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span></a>
+    <a href="{% url "blog:PostListView" %}" class="logo"><span class="lite">文章列表</span></a>
+{% endblock %}
+
 
 {% block search %}
     {% csrf_token %}
