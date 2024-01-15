@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div id="navigation">
+    <div id="article-navigation">
         
         <h2>本文目录</h2>
         <ul id="article-toc"></ul>
@@ -50,93 +50,66 @@
 
     
 
-    
-
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // 获取所有章节标题            
+        window.onload = function() {
+            var toc = document.getElementById("article-toc");            
             var sections = document.querySelectorAll("#content a[name]"); 
-            var navigation = document.getElementById('navigation');
-            console.log("sections:",sections);
-
-            // 动态生成目录
-            var ul = document.createElement('ul');
-            sections.forEach(function (section, index) {
-                var li = document.createElement('li');
-                var a = document.createElement('a');
+            
+            
+            sections.forEach(function (section) {
+                var listItem = document.createElement("li");
+                var link = document.createElement("a");                  
                 var sectionText = section.getAttribute("name").trim();
-                a.textContent = sectionText;
-                a.href = "#" + encodeURIComponent(sectionText);// 使用 sectionText 作为链接的锚点                
-                
-                li.appendChild(a);
-                ul.appendChild(li);
+                link.textContent = sectionText;
+                link.href = "#" + encodeURIComponent(sectionText);// 使用 sectionText 作为链接的锚点               
+                link.classList.add("toc-link")// 添加一个类，用于标识目录项    
+                listItem.appendChild(link);
+                toc.appendChild(listItem);
             });
 
-            navigation.appendChild(ul);
-
-            // 获取所有目录链接
-            var links = document.querySelectorAll("#navigation a");
-
-            // 添加点击事件监听器
-            links.forEach(function (link, index) {
-                link.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    handleSectionClick(index);
-                });
-            });
-
-            // 监听滚动事件
-            window.addEventListener("scroll", handleScroll);
-
-            // 处理滚动事件的函数
-            function handleScroll() {
-                var currentScroll = window.scrollY;
-
+            var links = document.querySelectorAll("#article-navigation a");
+            console.log("links:",links);
+    
+            // 监听滚动事件，高亮显示当前章节并对应左侧目录
+            window.addEventListener("scroll", function () {
+                var currentScroll = window.scrollY;    
                 sections.forEach(function (section, index) {
-                    var sectionTop = section.offsetTop - navigation.offsetTop;
-                    var sectionBottom = sectionTop + section.clientHeight;
-
+                    var sectionTop = section.offsetTop - 0;                    
+                    var sectionBottom = sectionTop + section.offsetHeight + 56;// 56px,因为顶部有个固定的栏位，高度56px
+                       
                     if (currentScroll >= sectionTop && currentScroll < sectionBottom) {
-                        handleSectionHighlight(index);
+                        {% comment %} alert("cc"); {% endcomment %}
+                        console.log("sectionTop:",sectionTop,"section.offsetTop:");
+                        console.log("sectionBottom:",sectionBottom,"clientHeight:",section.clientHeight,"section.offsetHeight:",section.offsetHeight);
+                        console.log("currentScroll:",currentScroll);
+                        // 移除所有章节的 active 类
+                        sections.forEach(function (s) {
+                            s.classList.remove("active");
+                        });
+    
+                        // 高亮显示当前章节
+                        console.log("section text:",section.getAttribute("name").trim())
+                        section.classList.add("active");
+    
+                        // 高亮显示左侧目录对应条目
+                        links.forEach(function (link, i) {
+                            if (i === index) {
+                                link.classList.add("active");
+                            } else {
+                                link.classList.remove("active");
+                            }
+                        });
                     }
                 });
-            }
+            });
 
-            // 处理点击事件的函数
-            function handleSectionClick(index) {
-                var targetSection = sections[index];
+            
+        };
 
-                // 添加平滑滚动效果
-                window.scrollTo({
-                    top: targetSection.offsetTop - navigation.offsetTop + 1050,
-                    behavior: "smooth"
-                });
-
-                // 高亮显示当前章节
-                handleSectionHighlight(index);
-            }
-
-            // 处理章节高亮的函数
-            function handleSectionHighlight(index) {
-                // 移除所有章节的 active 类
-                sections.forEach(function (s) {
-                    s.classList.remove("active");
-                });
-
-                // 高亮显示当前章节
-                sections[index].classList.add("active");
-
-                // 高亮显示左侧目录对应条目
-                links.forEach(function (link, i) {
-                    if (i === index) {
-                        link.classList.add("active");
-                    } else {
-                        link.classList.remove("active");
-                    }
-                });
-            }
-        });
+        
     </script>
+
+    
     
 
 {% endblock %}
