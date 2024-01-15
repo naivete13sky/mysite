@@ -48,54 +48,56 @@
         <ul id="article-toc"></ul>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var toc = document.getElementById("article-toc");
-            {% comment %} var sections = document.querySelectorAll("#content h2"); {% endcomment %}
-            {% comment %} var sections = document.querySelectorAll("#content strong"); {% endcomment %}
-            var sections = document.querySelectorAll("#content a[name]");
-            
-            
+    
 
+    <script>
+        window.onload = function() {
+            var toc = document.getElementById("article-toc");            
+            var sections = document.querySelectorAll("#content a[name]");  
+    
             sections.forEach(function (section) {
                 var listItem = document.createElement("li");
-                var link = document.createElement("a");
-
-                {% comment %} link.textContent = section.textContent; {% endcomment %}
-                {% comment %} link.href = "#" + section.id; {% endcomment %}
-                {% comment %} alert(link.textContent); {% endcomment %}
-                
-
-                
-                {% comment %} var sectionText = section.textContent.trim();// 获取strong标签中的文本内容，作为链接的href属性 {% endcomment %}
-                var sectionText = section.getAttribute("name").trim();// 获取<a name="text">标签中的文本内容，作为链接的href属性
+                var link = document.createElement("a");                  
+                var sectionText = section.getAttribute("name").trim();
                 link.textContent = sectionText;
-
+    
                 // 使用 sectionText 作为链接的锚点
                 link.href = "#" + encodeURIComponent(sectionText);
-                
-
+    
+                // 添加一个类，用于标识目录项
+                link.classList.add("toc-link")
+    
                 listItem.appendChild(link);
                 toc.appendChild(listItem);
             });
-
+    
+            // 监听滚动事件，高亮显示当前章节并对应左侧目录
             window.addEventListener("scroll", function () {
-                var currentScroll = window.scrollY;
+                var currentScroll = window.scrollY - 91;
+    
+                sections.forEach(function (section, index) {
+                    var sectionTop = section.offsetTop - 0;
+                    {% comment %} var sectionBottom = sectionTop + section.clientHeight; {% endcomment %}
+                    var sectionBottom = sectionTop + section.offsetHeight;
+                    {% comment %} var sectionBottom = sectionTop + 50; {% endcomment %}
 
-                sections.forEach(function (section) {
-                    var sectionTop = section.offsetTop - document.getElementById('article-navigation').offsetTop;
-                    var sectionBottom = sectionTop + section.clientHeight;
-
+                    console.log("sectionTop:",sectionTop,"section.offsetTop:");
+                    console.log("sectionBottom:",sectionBottom,"clientHeight:",section.clientHeight,"section.offsetHeight:",section.offsetHeight);
+                    console.log("currentScroll:",currentScroll);
+    
                     if (currentScroll >= sectionTop && currentScroll < sectionBottom) {
+                        alert("cc");
+                        // 移除所有章节的 active 类
                         sections.forEach(function (s) {
                             s.classList.remove("active");
                         });
-
+    
+                        // 高亮显示当前章节
                         section.classList.add("active");
-
-                        var tocLinks = document.querySelectorAll("#article-toc a");
-                        tocLinks.forEach(function (link) {
-                            if (link.href.endsWith("#" + section.id)) {
+    
+                        // 高亮显示左侧目录对应条目
+                        links.forEach(function (link, i) {
+                            if (i === index) {
                                 link.classList.add("active");
                             } else {
                                 link.classList.remove("active");
@@ -104,8 +106,15 @@
                     }
                 });
             });
-        });
+
+            
+        };
+
+        
     </script>
+
+    
+    
 
 {% endblock %}
 
