@@ -1,11 +1,10 @@
 {% extends 'blog/blog_base_20240115.html' %}
 {% load static %}
 {% load blog_tags %}
+
 {% block title %}
     {{ post.title }}
 {% endblock %}
-
-
 
 {% block head_add %}
     {{ block.super }}
@@ -16,7 +15,6 @@
     <a class="logo"><span class="lite">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span></a>
     <a href="{% url "blog:PostListView" %}" class="logo"><span class="lite">文章列表</span></a>
 {% endblock %}
-
 
 {% block search %}
     {% csrf_token %}
@@ -281,5 +279,3 @@
     
 
 {% endblock %}
-
-
