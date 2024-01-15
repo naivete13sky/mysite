@@ -115,7 +115,8 @@
 
                 // 添加平滑滚动效果
                 window.scrollTo({
-                    top: targetSection.offsetTop - navigation.offsetTop + 0,
+                    {% comment %} top: targetSection.offsetTop - navigation.offsetTop + 0, {% endcomment %}
+                    top: targetSection.offsetTop - 0 - 56,
                     behavior: "smooth"
                 });
 
