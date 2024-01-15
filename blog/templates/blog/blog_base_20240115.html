@@ -1,0 +1,357 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link href={% static "css/bootstrap.min.css" %} rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>{% block title %}个人主页{% endblock %}</title>
+
+    <style>
+        body {
+            padding-top: 56px;
+            background-color: #f8f9fa;
+        }
+
+        .fixed-left-sidebar,/* 在CSS中，逗号（,）用于将多个选择器组合在一起，以应用相同的样式规则。 */
+        .fixed-right-sidebar {
+            position: fixed;
+            top: 100px;/* 从顶部偏移100像素 */
+            bottom: 0;
+            width: 300px;
+            background-color: #f8f9fa;
+            overflow-y: auto;
+            z-index: 1; /* 添加这行，设置一个较低的 z-index 值 */
+        }
+
+        .fixed-left-sidebar {
+            left: 150px;/* 从左侧偏移200px */
+            border-right: 1px solid #dee2e6;/* 右侧有1像素的深灰色边框 */
+        }
+
+        .main-content {
+            margin-left: 500px;
+        }
+
+        .fixed-right-sidebar {
+            right: 150px;
+            border-left: 1px solid #dee2e6;/* 左侧有1像素的深灰色边框 */
+        }
+
+        /* 媒体查询，它的作用是在屏幕宽度小于或等于991.98像素时应用一些样式规则，从而实现响应式设计，以适应小屏幕设备。 */
+        @media (max-width: 991.98px) {
+            .fixed-left-sidebar,
+            .fixed-right-sidebar {
+                position: static;
+                width: 100%;
+                border: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        
+        #form-control {
+            max-width: 200px; /* 设置为您期望的最大宽度 */
+            width: 100%;
+            margin-left: auto; /* 将左边距设置为自动，使其靠在右侧 */
+            display: block; /* 使其成为块级元素，以适应父元素的宽度 */
+        }
+
+        #article-toc li.active {
+            font-weight: bold;
+            color: #007bff; /* 可以根据需要调整颜色 */
+        }
+        
+        .toc-link.active {
+            font-weight: bold;
+            color: #007bff; /* 根据需要调整颜色 */
+        }
+        
+        .active {
+            {% comment %} color: #4285f4; {% endcomment %}
+            color: #4CAF50;
+        }
+        
+
+    </style>
+
+    {% block head_add %}
+
+    {% endblock %}
+    
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        {% block header_menu %}
+            <a class="navbar-brand" href="#">Your Logo</a>
+            <a class="navbar-brand" href="#">cc</a>
+        {% endblock %}
+        
+        <!-- 搜索框 -->
+        
+            {% block search %}
+                {% csrf_token %}
+                <script src={% static "javascripts/jquery.min.js" %}></script>
+                <input class="form-control" id="form-control" placeholder="文章名称、内容" type="search" onkeydown="if(event.keyCode==13) {search_by_post_title_body()}">
+
+                <script>
+                    function search_by_post_title_body() {           
+                        var searchValue = $("#form-control").val(); // 获取表单字段的值
+                        var url = "{% url 'blog:PostListView' %}?search_by_post_title_body=" + searchValue;
+                        window.location.href = url;
+                    }
+                </script>
+
+            {% endblock %}
+            {% comment %} <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> {% endcomment %}
+
+        
+
+        <!-- 用户登录状态 -->
+
+        {% block header_dropdown %}
+            <div class="dropdown ml-2">            
+                <span class="profile-ava">
+                </span>
+                {% if request.user.username != '' %}
+                    {% comment %} <span class="user-name">{{ request.user.last_name }}{{ request.user.first_name }}</span> {% endcomment %}
+                    <button class="btn btn-outline-light dropdown-toggle border-0" type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ request.user.last_name }}{{ request.user.first_name }}
+                    </button>
+                {% endif %}
+                {% if request.user.username == '' %}
+                    {% comment %} <span class="user-name">游客</span> {% endcomment %}
+                    <button class="btn btn-outline-light dropdown-toggle border-0" type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        游客
+                    </button>
+                {% endif %}
+
+                <b class="caret"></b>
+                <ul class="dropdown-menu extended logout">
+                    <div class="log-arrow-up"></div>
+                    <li class="eborder-top">
+                        <a href={% url "dashboard" %}><i class="icon_profile"></i>我的资料</a>
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li>
+                        {% if request.user.username != '' %}
+                            <a href={% url "logout" %}><i class="icon_key_alt"></i> 退出</a>
+                        {% endif %}
+                        {% if request.user.username == '' %}
+                            <a href={% url "login" %}><i class="icon_key_alt"></i> 登录</a>
+                        {% endif %}
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li>
+                        {% if request.user.username == '' %}
+                            <a href={% url "register" %}><i class="icon_key_alt"></i> 注册 </a>
+                        {% endif %}
+                    </li>
+                </ul>
+                <div class="dropdown-menu" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Logout</a>
+                </div>
+            </div>
+            
+        {% endblock %}
+
+        
+    </nav>
+
+    <!-- 主体内容 -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 左侧边栏 -->
+            <div class="col-md-3 col-lg-2 fixed-left-sidebar">
+                <!-- ... (原有左侧边栏内容) ... -->
+                {% block left_sidebar %}
+                <ul class="list-group">
+                    <!-- 左侧边栏内容 -->
+                    <li class="list-group-item">Item 1</li>
+                    <li class="list-group-item">Item 2</li>
+                    <li class="list-group-item">Item 3</li>
+                    <li class="list-group-item">Item 4</li>
+                    <li class="list-group-item">Item 5</li>
+                    <li class="list-group-item">Item 6</li>
+                    <li class="list-group-item">Item 7</li>
+                    <li class="list-group-item">Item 8</li>
+                    <li class="list-group-item">Item 9</li>
+                    <li class="list-group-item">Item 10</li>
+                    <li class="list-group-item">Item 11</li>
+                    <li class="list-group-item">Item 12</li>
+                    <li class="list-group-item">Item 13</li>
+                    <li class="list-group-item">Item 14</li>
+                    <li class="list-group-item">Item 15</li>
+                    <li class="list-group-item">Item 16</li>
+                    <li class="list-group-item">Item 17</li>
+                    <li class="list-group-item">Item 18</li>
+                    <li class="list-group-item">Item 19</li>
+                    <li class="list-group-item">Item 20</li>
+                    <li class="list-group-item">Item 21</li>
+                    <li class="list-group-item">Item 22</li>
+
+                </ul>
+
+                {% endblock %}
+                
+            </div>
+
+            <!-- 中间主体 -->
+            <div class="col-md-6 col-lg-6 main-content">
+                {% block main_content %}
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content 1</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content 2</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content 3</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content</h1>
+                <h1>Main Content cc</h1>
+
+                {% endblock %}
+                
+            </div>
+
+            <!-- 右侧边栏 -->
+            <div class="col-md-3 col-lg-2 fixed-right-sidebar">
+                {% block right_sidebar %}
+                <ul class="list-group">
+                    <!-- 右侧边栏内容 -->
+                    <li class="list-group-item">Item A</li>
+                    <li class="list-group-item">Item B</li>
+                    <li class="list-group-item">Item C</li>
+                    <li class="list-group-item">Item D</li>
+                </ul>
+
+                {% endblock %}
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="btn btn-primary rounded-circle" title="Scroll to Top" style="position: fixed; bottom: 20px; right: 20px; display: none; color: blue;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+
+    <!-- Bootstrap JavaScript 和 Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core/dist/umd/popper.min.js"></script>    
+    <script src={% static "index_base_20220818/js/bootstrap.min.js" %}></script>
+
+    <!-- Font Awesome for the up arrow icon -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <!-- Scroll to Top Script -->
+    <script>
+        // Get the button
+        var mybutton = document.getElementById("scrollToTopBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        mybutton.addEventListener("click", function () {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        });
+
+    </script>
+
+</body>
+
+</html>
