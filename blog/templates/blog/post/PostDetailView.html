@@ -52,7 +52,8 @@
         document.addEventListener("DOMContentLoaded", function () {
             var toc = document.getElementById("article-toc");
             {% comment %} var sections = document.querySelectorAll("#content h2"); {% endcomment %}
-            var sections = document.querySelectorAll("#content strong");
+            {% comment %} var sections = document.querySelectorAll("#content strong"); {% endcomment %}
+            var sections = document.querySelectorAll("#content a[name]");
             
             
 
@@ -63,9 +64,11 @@
                 {% comment %} link.textContent = section.textContent; {% endcomment %}
                 {% comment %} link.href = "#" + section.id; {% endcomment %}
                 {% comment %} alert(link.textContent); {% endcomment %}
+                
 
-                // 获取strong标签中的文本内容，作为链接的href属性
-                var sectionText = section.textContent.trim();
+                
+                {% comment %} var sectionText = section.textContent.trim();// 获取strong标签中的文本内容，作为链接的href属性 {% endcomment %}
+                var sectionText = section.getAttribute("name").trim();// 获取<a name="text">标签中的文本内容，作为链接的href属性
                 link.textContent = sectionText;
 
                 // 使用 sectionText 作为链接的锚点
