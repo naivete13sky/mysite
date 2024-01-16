@@ -32,6 +32,13 @@
 {% endblock %}
 
 {% block left_sidebar %}
+    
+    <div id="navigation">
+        
+        <h2 id="current_article_navigation_title"></h2>
+        <ul id="article-toc"></ul>
+    </div>
+
     <div class="row">
         <div class="col-sm-12">
             {% comment %} <label>&ensp;标签：&ensp;</label> {% endcomment %}
@@ -40,13 +47,6 @@
             </div>
         </div>
     </div>
-    <div id="navigation">
-        
-        <h2>本文目录</h2>
-        <ul id="article-toc"></ul>
-    </div>
-
-    
 
     
 
@@ -74,6 +74,15 @@
 
             // 获取所有目录链接
             var links = document.querySelectorAll("#navigation a");
+
+            //本文目录 获取<h2>标签
+            var current_article_navigation_title = document.getElementById("current_article_navigation_title");
+            // 如果条件满足，替换<h2>标签中的内容
+            if (links.length) {
+                current_article_navigation_title.innerHTML = "本文目录";
+            };
+
+
 
             // 添加点击事件监听器
             links.forEach(function (link, index) {
